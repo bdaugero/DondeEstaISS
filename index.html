@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Code Train Tutorial</title>
+
+    <!-- Leaflet API -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+    crossorigin=""/>
+
+    <!-- Make sure you put this AFTER Leaflet's CSS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+    crossorigin=""></script>
+
+    <!-- Archivo CSS -->
+    <link rel="stylesheet" href="estilo.css">
+
+    <!-- Codigo de la pagina-->
+    <script src="main.js"></script>
+
+
+</head>
+<body>
+
+    <main>
+        <h1>Donde esta la ISS</h1>
+
+        <p>
+            latitud: <span id="lat"></span>°<br />
+            longitud: <span id="lon"></span>°
+        </p>
+
+        <div id="map"></div>
+    </main>
+    
+    <script>
+
+
+
+
+        // Haciendo el mapa y las tiles
+        const map = L.map('map').setView([0, 0], 1);
+        const attribution = 
+        '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+        const tileUrl = 'https://tile.openstreetmap.org/{z}/{x}/{y}.png';
+        const tiles = L.tileLayer(tileUrl , {attribution})
+        tiles.addTo(map);
+
+
+        const issIcon = L.icon({
+            iconUrl: 'iss.png',
+            iconSize: [50, 32],
+            iconAnchor: [25, 16],
+        });
+
+        const marker = L.marker([0, 0], { icon: issIcon}).addTo(map);
+
+        
+        setInterval(getISS, 1000);
+    
+    </script>
+
+    
+</body>
+</html>

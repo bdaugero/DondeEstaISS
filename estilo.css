@@ -1,0 +1,8 @@
+#map {
+    height: 300px;
+    width: 800px;
+  }
+
+main {
+  display: grid;
+}
